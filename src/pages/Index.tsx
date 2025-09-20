@@ -37,7 +37,7 @@ const Index = () => {
             </div>
 
             {/* Row 1: Metrics + Projections */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 flex-wrap">
               {/* Metrics Grid */}
               <div className="grid grid-cols-2 gap-6">
                 <MetricCard

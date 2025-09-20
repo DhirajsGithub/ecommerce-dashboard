@@ -1,64 +1,97 @@
-import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer } from 'recharts';
+"use client";
 
-const data = [
-  { month: 'Jan', projections: 15, actuals: 18 },
-  { month: 'Feb', projections: 20, actuals: 25 },
-  { month: 'Mar', projections: 18, actuals: 22 },
-  { month: 'Apr', projections: 25, actuals: 28 },
-  { month: 'May', projections: 22, actuals: 20 },
-  { month: 'Jun', projections: 30, actuals: 32 }
+import { Bar, BarChart, CartesianGrid, XAxis, YAxis } from "recharts";
+
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart";
+
+export const description = "Projections vs Actuals stacked bar chart";
+
+const rawData = [
+  { month: "Jan", projections: 20, actuals: 16 },
+  { month: "Feb", projections: 28, actuals: 21 },
+  { month: "Mar", projections: 22, actuals: 17 },
+  { month: "Apr", projections: 29, actuals: 22 },
+  { month: "May", projections: 19, actuals: 16 },
+  { month: "Jun", projections: 26, actuals: 21 },
 ];
+
+// Transform → remainder = projections - actuals
+const chartData = rawData.map((d) => ({
+  month: d.month,
+  actuals: d.actuals,
+  remainder: Math.max(d.projections - d.actuals, 0),
+}));
+
+const chartConfig = {
+  actuals: {
+    label: "Actuals",
+  },
+  remainder: {
+    label: "Projections",
+  },
+} satisfies ChartConfig;
 
 export function ProjectionsChart() {
   return (
-    <div className="bg-card rounded-lg p-6">
-      <div className="space-y-4">
-        <div>
-          <h3 className="text-lg font-semibold text-card-foreground">Projections vs Actuals</h3>
-          <div className="flex items-center gap-4 mt-2">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              <span className="text-sm text-muted-foreground">Projections</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-300"></div>
-              <span className="text-sm text-muted-foreground">Actuals</span>
-            </div>
-          </div>
-        </div>
-        
-        <div className="h-64">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={data} barCategoryGap="20%">
-              <XAxis 
-                dataKey="month" 
-                axisLine={false}
+    <Card className="border-none w-full min-w-[340px]">
+      <CardHeader className="pb-2">
+        <h3 className="text-lg font-semibold text-card-foreground pb-3">
+          Projections vs Actuals
+        </h3>
+      </CardHeader>
+      <CardContent className="pt-0">
+        <div className="w-full h-[180px]">
+          <ChartContainer config={chartConfig} className="w-full h-full">
+            <BarChart 
+              accessibilityLayer 
+              data={chartData}
+              height={100}
+              margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
+            >
+              <CartesianGrid vertical={false} stroke="rgba(128, 128, 128, 0.2)" />
+              <XAxis
+                dataKey="month"
                 tickLine={false}
-                tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+                tickMargin={5}
+                axisLine={false}
+                tick={{ fontSize: 10 }}
               />
-              <YAxis 
+              <YAxis
                 axisLine={false}
                 tickLine={false}
-                tick={{ fontSize: 12, fill: 'hsl(var(--muted-foreground))' }}
+                domain={[0, 30]}
+                ticks={[0, 15, 30]}
                 tickFormatter={(value) => `${value}M`}
+                tick={{ fontSize: 10 }}
+                width={25}
               />
-              <Bar 
-                dataKey="projections" 
-                fill="hsl(220 70% 50%)" 
-                radius={[4, 4, 0, 0]}
-                maxBarSize={40}
+              <ChartTooltip content={<ChartTooltipContent hideLabel />} />
+              <Bar
+                dataKey="actuals"
+                stackId="a"
+                fill="#A8C5DA"
+                radius={[0, 0, 2, 2]}
+                barSize={20}
               />
-              <Bar 
-                dataKey="actuals" 
-                fill="hsl(220 70% 70%)" 
-                radius={[4, 4, 0, 0]}
-                maxBarSize={40}
+              <Bar
+                dataKey="remainder"
+                stackId="a"
+                fill="#CFDFEB99"
+                radius={[2, 2, 0, 0]}
+                barSize={20}
               />
             </BarChart>
-          </ResponsiveContainer>
+          </ChartContainer>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
+
+export default ProjectionsChart;

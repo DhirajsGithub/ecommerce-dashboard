@@ -51,6 +51,12 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        skyBlue: {
+          DEFAULT: "hsl(var(--sky-blue))",
+        },
+        paleBlue: {
+          DEFAULT: "hsl(var(--ice-blue))",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--background))",
           foreground: "hsl(var(--sidebar-foreground))",

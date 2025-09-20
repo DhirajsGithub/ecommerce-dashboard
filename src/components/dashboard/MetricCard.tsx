@@ -18,7 +18,7 @@ export function MetricCard({
   className,
 }: MetricCardProps) {
   return (
-    <div className={cn("bg-card rounded-lg p-6", className)}>
+    <div className={cn("bg-card rounded-lg p-6 min-w-[170px]", className)}>
       <div className="space-y-2">
         <p className="text-sm font-medium text-muted-foreground">{title}</p>
         <div className="flex items-center justify-between">
