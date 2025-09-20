@@ -12,7 +12,7 @@ const data = [
 
 export function ProjectionsChart() {
   return (
-    <div className="bg-card rounded-lg p-6 border border-border">
+    <div className="bg-card rounded-lg p-6">
       <div className="space-y-4">
         <div>
           <h3 className="text-lg font-semibold text-card-foreground">Projections vs Actuals</h3>

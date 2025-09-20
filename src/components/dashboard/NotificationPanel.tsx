@@ -111,7 +111,7 @@ export function NotificationPanel({ className, isOpen = true, onClose }: Notific
       {/* Scrollable content */}
       <div className="flex-1 overflow-y-auto">
         {/* Notifications */}
-        <div className="p-4 border-b border-border">
+        <div className="p-4">
           <h3 className="font-semibold text-foreground mb-4">Notifications</h3>
           <div className="space-y-3">
             {notifications.map((notification) => (
@@ -136,7 +136,7 @@ export function NotificationPanel({ className, isOpen = true, onClose }: Notific
         </div>
 
         {/* Activities */}
-        <div className="p-4 border-b border-border">
+        <div className="p-4">
           <h3 className="font-semibold text-foreground mb-4">Activities</h3>
           <div className="space-y-3">
             {activities.map((activity) => (

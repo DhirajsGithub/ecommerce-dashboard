@@ -12,7 +12,7 @@ const data = [
 
 export function RevenueChart() {
   return (
-    <div className="bg-card rounded-lg p-6 border border-border h-full">
+    <div className="bg-card rounded-lg p-6 h-full">
       <div className="space-y-4">
         <div>
           <h3 className="text-lg font-semibold text-card-foreground">Revenue</h3>

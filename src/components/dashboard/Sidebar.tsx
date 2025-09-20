@@ -81,7 +81,7 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
   return (
     <div
       className={cn(
-        "h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300",
+        "h-screen bg-sidebar border-r border-sidebar-border flex flex-col",
         collapsed ? "w-16" : "w-64",
         className
       )}
