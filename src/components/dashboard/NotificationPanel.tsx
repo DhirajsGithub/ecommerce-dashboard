@@ -101,69 +101,73 @@ export function NotificationPanel({ className, isOpen = true, onClose }: Notific
   if (!isOpen) return null;
 
   return (
-    <div className={cn("w-80 bg-background border-l border-border h-screen flex flex-col", className)}>
-      {/* Notifications */}
-      <div className="p-4 border-b border-border">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-semibold text-foreground">Notifications</h3>
-          <Button variant="ghost" size="sm" onClick={onClose}>
-            <X className="h-4 w-4" />
-          </Button>
-        </div>
-        <div className="space-y-3">
-          {notifications.map((notification) => (
-            <div key={notification.id} className="flex items-start gap-3">
-              <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
-                {notification.icon ? (
-                  <notification.icon className="h-4 w-4 text-muted-foreground" />
-                ) : (
-                  <Avatar className="w-8 h-8">
-                    <AvatarImage src={notification.avatar || ''} />
-                    <AvatarFallback>AL</AvatarFallback>
-                  </Avatar>
-                )}
-              </div>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-foreground line-clamp-2">{notification.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+    <div
+      className={cn(
+        "w-80 bg-background border-l border-border h-full flex flex-col", // use h-full or h-screen depending on parent
+        className
+      )}
+    >
 
-      {/* Activities */}
-      <div className="p-4 border-b border-border">
-        <h3 className="font-semibold text-foreground mb-4">Activities</h3>
-        <div className="space-y-3">
-          {activities.map((activity) => (
-            <div key={activity.id} className="flex items-start gap-3">
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={activity.avatar} />
-                <AvatarFallback>U</AvatarFallback>
-              </Avatar>
-              <div className="flex-1 min-w-0">
-                <p className="text-sm text-foreground line-clamp-2">{activity.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
+      {/* Scrollable content */}
+      <div className="flex-1 overflow-y-auto">
+        {/* Notifications */}
+        <div className="p-4 border-b border-border">
+          <h3 className="font-semibold text-foreground mb-4">Notifications</h3>
+          <div className="space-y-3">
+            {notifications.map((notification) => (
+              <div key={notification.id} className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full bg-muted flex items-center justify-center">
+                  {notification.icon ? (
+                    <notification.icon className="h-4 w-4 text-muted-foreground" />
+                  ) : (
+                    <Avatar className="w-8 h-8">
+                      <AvatarImage src={notification.avatar || ''} />
+                      <AvatarFallback>AL</AvatarFallback>
+                    </Avatar>
+                  )}
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-foreground line-clamp-2">{notification.title}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{notification.time}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
 
-      {/* Contacts */}
-      <div className="p-4 flex-1">
-        <h3 className="font-semibold text-foreground mb-4">Contacts</h3>
-        <div className="space-y-3">
-          {contacts.map((contact) => (
-            <div key={contact.name} className="flex items-center gap-3">
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={contact.avatar} />
-                <AvatarFallback>{contact.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
-              </Avatar>
-              <span className="text-sm text-foreground">{contact.name}</span>
-            </div>
-          ))}
+        {/* Activities */}
+        <div className="p-4 border-b border-border">
+          <h3 className="font-semibold text-foreground mb-4">Activities</h3>
+          <div className="space-y-3">
+            {activities.map((activity) => (
+              <div key={activity.id} className="flex items-start gap-3">
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src={activity.avatar} />
+                  <AvatarFallback>U</AvatarFallback>
+                </Avatar>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm text-foreground line-clamp-2">{activity.title}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{activity.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Contacts */}
+        <div className="p-4">
+          <h3 className="font-semibold text-foreground mb-4">Contacts</h3>
+          <div className="space-y-3">
+            {contacts.map((contact) => (
+              <div key={contact.name} className="flex items-center gap-3">
+                <Avatar className="w-8 h-8">
+                  <AvatarImage src={contact.avatar} />
+                  <AvatarFallback>{contact.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                </Avatar>
+                <span className="text-sm text-foreground">{contact.name}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>

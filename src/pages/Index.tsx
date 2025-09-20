@@ -71,16 +71,14 @@ const Index = () => {
             </div>
 
             {/* Row 2: Revenue (big) + World Map */}
-         {/* Row 2: Revenue (big) + World Map */}
-<div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 items-stretch min-h-[400px]">
-  <div className="lg:col-span-2 h-full">
-    <RevenueChart />
-  </div>
-  <div className="h-full">
-    <WorldMap />
-  </div>
-</div>
-
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6 items-stretch min-h-[400px]">
+              <div className="lg:col-span-2 h-full">
+                <RevenueChart />
+              </div>
+              <div className="h-full">
+                <WorldMap />
+              </div>
+            </div>
 
             {/* Row 3: Top Selling Products (big) + Total Sales */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
