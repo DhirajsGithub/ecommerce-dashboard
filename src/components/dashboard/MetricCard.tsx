@@ -12,7 +12,7 @@ interface MetricCardProps {
 
 export function MetricCard({ title, value, change, positive = true, className }: MetricCardProps) {
   return (
-    <div className={cn("bg-card rounded-lg p-6 border border-border", className)}>
+    <div className={cn("bg-primaryLight rounded-lg p-6", className)}>
       <div className="space-y-2">
         <p className="text-sm font-medium text-muted-foreground">{title}</p>
         <div className="flex items-center justify-between">
