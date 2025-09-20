@@ -5,9 +5,9 @@ import { NotificationPanel } from "@/components/dashboard/NotificationPanel";
 import { MetricCard } from "@/components/dashboard/MetricCard";
 import { ProjectionsChart } from "@/components/dashboard/ProjectionsChart";
 import { RevenueChart } from "@/components/dashboard/RevenueChart";
-import { WorldMap } from "@/components/dashboard/WorldMap";
 import { TopSellingProducts } from "@/components/dashboard/TopSellingProducts";
 import { TotalSalesChart } from "@/components/dashboard/TotalSalesChart";
+import RevenueWorldMap from "@/components/dashboard/WorldMap";
 
 const Index = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -76,7 +76,7 @@ const Index = () => {
                 <RevenueChart />
               </div>
               <div className="h-full">
-                <WorldMap />
+                <RevenueWorldMap />
               </div>
             </div>
 

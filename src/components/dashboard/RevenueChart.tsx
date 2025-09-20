@@ -56,7 +56,7 @@ export function RevenueChart() {
         </div>
       </CardHeader>
       <CardContent className="pt-0">
-        <div className="w-full h-[250px]">
+        <div className="w-full max-h-[350px]">
           <ChartContainer config={chartConfig} className="w-full h-full">
             <LineChart
               accessibilityLayer

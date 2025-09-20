@@ -1,70 +1,111 @@
-import React from 'react';
+import React from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import WorldMap from "react-svg-worldmap";
 
 const locations = [
-  { name: 'New York', value: '72K', left: '25%', top: '30%' },
-  { name: 'San Francisco', value: '39K', left: '10%', top: '35%' },
-  { name: 'Sydney', value: '25K', left: '85%', top: '70%' },
-  { name: 'Singapore', value: '61K', left: '75%', top: '55%' }
+  {
+    name: "New York",
+    value: "72K",
+    country: "US",
+    color: "#3B82F6",
+    revenue: 72,
+  },
+  {
+    name: "San Francisco",
+    value: "39K",
+    country: "US",
+    color: "#10B981",
+    revenue: 39,
+  },
+  {
+    name: "Sydney",
+    value: "25K",
+    country: "AU",
+    color: "#F59E0B",
+    revenue: 25,
+  },
+  {
+    name: "Singapore",
+    value: "61K",
+    country: "SG",
+    color: "#EF4444",
+    revenue: 61,
+  },
 ];
 
-export function WorldMap() {
+// Data for the world map - we'll use country codes and values
+const mapData = [
+  { country: "us", value: 111 }, // Combined NY + SF
+  { country: "au", value: 25 },
+  { country: "sg", value: 61 },
+];
+
+export default function RevenueWorldMap() {
+  const maxValue = Math.max(...locations.map((loc) => loc.revenue));
+
   return (
-    <div className="bg-card rounded-lg p-6">
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-card-foreground">Revenue by Location</h3>
-        
-        {/* World Map SVG */}
-        <div className="relative h-48 bg-muted/20 rounded-lg overflow-hidden">
-          <svg
-            viewBox="0 0 1000 500"
-            className="w-full h-full"
-            style={{ filter: 'hue-rotate(200deg) saturate(0.3)' }}
-          >
-            {/* Simplified world map paths */}
-            <path
-              d="M200,150 L250,120 L320,130 L380,140 L420,160 L400,200 L350,220 L300,210 L250,180 Z"
-              fill="hsl(var(--muted-foreground))"
-              opacity="0.3"
-            />
-            <path
-              d="M100,200 L180,180 L220,200 L200,250 L150,280 L100,270 Z"
-              fill="hsl(var(--muted-foreground))"
-              opacity="0.3"
-            />
-            <path
-              d="M500,120 L600,110 L700,130 L750,150 L720,200 L650,220 L580,210 L520,180 Z"
-              fill="hsl(var(--muted-foreground))"
-              opacity="0.3"
-            />
-            <path
-              d="M800,200 L850,180 L900,200 L880,250 L830,280 L800,270 Z"
-              fill="hsl(var(--muted-foreground))"
-              opacity="0.3"
-            />
-          </svg>
-          
-          {/* Location markers */}
-          {locations.map((location, index) => (
-            <div
-              key={index}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2"
-              style={{ left: location.left, top: location.top }}
-            >
-              <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
-            </div>
-          ))}
+    <Card className="w-full max-w-lg bg-card border-none">
+      <CardHeader className="pb-4">
+        <CardTitle className="text-lg font-semibold text-card-foreground">
+          Revenue by Location
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        {/* World Map */}
+        <div className="h-48 p-4 flex items-center justify-center">
+          <WorldMap
+            data={mapData}
+            richInteraction
+            backgroundColor="transparent"
+            size="sm"
+            styleFunction={(context) => {
+              const { countryValue } = context;
+              return {
+                fill: "#A8C5DA",
+                fillOpacity: countryValue > 0 ? 0.8 : 0.3,
+                stroke: "#CBD5E1",
+                strokeWidth: 1,
+                strokeOpacity: 0.5,
+                cursor: "pointer",
+              };
+            }}
+          />
         </div>
-        
-        {/* Location list */}
-        <div className="space-y-2">
-          {locations.map((location, index) => (
-            <div key={index} className="flex justify-between items-center">
-              <span className="text-sm text-muted-foreground">{location.name}</span>
-              <span className="text-sm font-medium text-card-foreground">{location.value}</span>
-            </div>
-          ))}
+
+        {/* Location list with progress bars */}
+        {/* Location list with progress bars */}
+        <div className="flex flex-col gap-4">
+          {locations.map((location, index) => {
+            const percentage = (location.revenue / (maxValue + 10)) * 100;
+
+            return (
+              <div key={index}>
+                <div className="flex justify-between items-center">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-medium text-card-foreground">
+                      {location.name}
+                    </span>
+                  </div>
+                  <span className="text-sm font-semibold text-card-foreground">
+                    {location.value}
+                  </span>
+                </div>
+                <div className="w-full bg-gray-200 rounded-full h-1">
+                  {" "}
+                  {/* Changed to h-2 */}
+                  <div
+                    className="h-1 rounded-full transition-all duration-300 text-card-foreground"
+                    style={{
+                      backgroundColor: "#A8C5DA",
+                      width: `${percentage}%`,
+                    }}
+                  ></div>
+                </div>
+              </div>
+            );
+          })}
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
