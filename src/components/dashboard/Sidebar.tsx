@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { 
-  ChevronDown, 
-  BarChart3, 
-  FolderOpen, 
-  Star, 
-  Clock, 
-  User, 
-  Settings, 
-  Building, 
-  FileText, 
+import React, { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+  ChevronDown,
+  BarChart3,
+  FolderOpen,
+  Star,
+  Clock,
+  User,
+  Settings,
+  Building,
+  FileText,
   Users,
   ShoppingCart,
   GraduationCap,
@@ -17,10 +18,14 @@ import {
   Home,
   PieChart,
   TrendingUp,
-  Package
-} from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
+  Package,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
 
 interface SidebarProps {
   className?: string;
@@ -30,62 +35,72 @@ interface SidebarProps {
 
 const navItems = [
   {
-    title: 'Favorites',
+    title: "Favorites",
     items: [
-      { title: 'Overview', icon: Home, active: false },
-      { title: 'Projects', icon: FolderOpen, active: false }
-    ]
+      { title: "Overview", icon: Home, active: false },
+      { title: "Projects", icon: FolderOpen, active: false },
+    ],
   },
   {
-    title: 'Recently',
-    items: []
+    title: "Recently",
+    items: [],
   },
   {
-    title: 'Dashboards',
+    title: "Dashboards",
     items: [
-      { title: 'Default', icon: Home, active: true },
-      { title: 'eCommerce', icon: ShoppingCart, active: false },
-      { title: 'Projects', icon: FolderOpen, active: false },
-      { title: 'Online Courses', icon: GraduationCap, active: false }
-    ]
+      { title: "Default", icon: Home, active: true },
+      { title: "eCommerce", icon: ShoppingCart, active: false },
+      { title: "Projects", icon: FolderOpen, active: false },
+      { title: "Online Courses", icon: GraduationCap, active: false },
+    ],
   },
   {
-    title: 'Pages',
+    title: "Pages",
     items: [
-      { 
-        title: 'User Profile', 
-        icon: User, 
+      {
+        title: "User Profile",
+        icon: User,
         active: false,
         children: [
-          { title: 'Overview', active: false },
-          { title: 'Projects', active: false },
-          { title: 'Campaigns', active: false },
-          { title: 'Documents', active: false },
-          { title: 'Followers', active: false }
-        ]
+          { title: "Overview", active: false },
+          { title: "Projects", active: false },
+          { title: "Campaigns", active: false },
+          { title: "Documents", active: false },
+          { title: "Followers", active: false },
+        ],
       },
-      { title: 'Account', icon: Settings, active: false },
-      { title: 'Corporate', icon: Building, active: false },
-      { title: 'Blog', icon: FileText, active: false },
-      { title: 'Social', icon: Users, active: false }
-    ]
-  }
+      { title: "Account", icon: Settings, active: false },
+      { title: "Corporate", icon: Building, active: false },
+      { title: "Blog", icon: FileText, active: false },
+      { title: "Social", icon: Users, active: false },
+    ],
+  },
 ];
 
 export function Sidebar({ className, collapsed = false }: SidebarProps) {
   return (
-    <div className={cn(
-      "h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300",
-      collapsed ? "w-16" : "w-64",
-      className
-    )}>
+    <div
+      className={cn(
+        "h-screen bg-sidebar border-r border-sidebar-border flex flex-col transition-all duration-300",
+        collapsed ? "w-16" : "w-64",
+        className
+      )}
+    >
       {/* Logo */}
-      <div className="p-4 border-b border-sidebar-border">
+      <div className="p-4 border-sidebar-border">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 bg-sidebar-primary rounded-lg flex items-center justify-center">
-            <span className="text-sidebar-primary-foreground font-bold text-sm">B</span>
-          </div>
-          {!collapsed && <span className="font-semibold text-sidebar-foreground">ByeWind</span>}
+          <Avatar className="w-8 h-8">
+            <AvatarImage
+              src={
+                "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+              }
+            />
+          </Avatar>
+          {!collapsed && (
+            <span className="font-semibold text-sidebar-foreground">
+              ByeWind
+            </span>
+          )}
         </div>
       </div>
 
@@ -115,9 +130,11 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                           >
                             <div className="flex items-center gap-2">
                               <item.icon className="h-4 w-4" />
-                              {!collapsed && <span className="text-sm">{item.title}</span>}
+                              {!collapsed && (
+                                <span className="text-sm">{item.title}</span>
+                              )}
                             </div>
-                            <ChevronDown className="h-3 w-3" />
+                            {!collapsed && <ChevronDown className="h-3 w-3" />}
                           </Button>
                         </CollapsibleTrigger>
                         <CollapsibleContent className="ml-6 mt-1 space-y-1">
@@ -142,14 +159,16 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                         size="sm"
                         className={cn(
                           "w-full justify-start text-left font-normal h-8 px-2",
-                          item.active 
-                            ? "bg-sidebar-accent text-sidebar-accent-foreground" 
+                          item.active
+                            ? "bg-sidebar-accent text-sidebar-accent-foreground"
                             : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                         )}
                       >
                         <div className="flex items-center gap-2">
                           <item.icon className="h-4 w-4" />
-                          {!collapsed && <span className="text-sm">{item.title}</span>}
+                          {!collapsed && (
+                            <span className="text-sm">{item.title}</span>
+                          )}
                         </div>
                       </Button>
                     )}
