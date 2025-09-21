@@ -60,6 +60,11 @@ All colors MUST be HSL.
 
     --sky-blue : 205, 40%, 76%, 1;
     --pale-blue : 200, 45%, 87%, 1;
+
+    --pie-chart-1 : #95A4FC;
+    --pie-chart-2 : #B1E3FF;
+    --pie-chart-3 : #BAEDBD;
+    --pie-chart-4 : #1C1C1C;
   }
 
   .dark {
@@ -103,6 +108,11 @@ All colors MUST be HSL.
 
     --sky-blue : 205, 40%, 76%, 1;
     --pale-blue : 200, 45%, 87%, 1;
+
+    --pie-chart-1 : #95A4FC;
+    --pie-chart-2 : #B1E3FF;
+    --pie-chart-3 : #BAEDBD;
+    --pie-chart-4 : #C6C7F8;
   }
 }
 

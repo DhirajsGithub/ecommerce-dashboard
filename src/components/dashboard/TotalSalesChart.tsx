@@ -1,72 +1,126 @@
-import React from 'react';
-import { PieChart, Pie, Cell, ResponsiveContainer } from 'recharts';
+"use client"
+import * as React from "react"
+import { Label, Pie, PieChart } from "recharts"
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  ChartConfig,
+  ChartContainer,
+  ChartTooltip,
+  ChartTooltipContent,
+} from "@/components/ui/chart"
 
-const data = [
-  { name: 'Direct', value: 300.56, color: 'hsl(220 70% 50%)' },
-  { name: 'Affiliate', value: 135.18, color: 'hsl(220 70% 70%)' },
-  { name: 'Sponsored', value: 154.02, color: 'hsl(160 70% 50%)' },
-  { name: 'E-mail', value: 48.96, color: 'hsl(160 70% 70%)' }
-];
+const chartData = [
+  { category: "direct", sales: 300.56, fill: "var(--pie-chart-4)" },
+  { category: "affiliate", sales: 135.18, fill: "var(--pie-chart-3)" },
+  { category: "sponsored", sales: 154.02, fill: "var(--pie-chart-1)" },
+  { category: "email", sales:  48.96, fill: "var(--pie-chart-2)" },
+]
 
-const salesData = [
-  { label: 'Direct', value: '$300.56', color: 'hsl(220 70% 50%)' },
-  { label: 'Affiliate', value: '$135.18', color: 'hsl(220 70% 70%)' },
-  { label: 'Sponsored', value: '$154.02', color: 'hsl(160 70% 50%)' },
-  { label: 'E-mail', value: '$48.96', color: 'hsl(160 70% 70%)' }
-];
+const chartConfig = {
+  sales: {
+    label: "Sales",
+  },
+  direct: {
+    label: "Direct",
+    color: "var(--pie-chart-1)",
+  },
+  affiliate: {
+    label: "Affiliate", 
+    color: "var(--pie-chart-2)",
+  },
+  sponsored: {
+    label: "Sponsored",
+    color: "var(--pie-chart-3)",
+  },
+  email: {
+    label: "E-mail",
+    color: "var(--pie-chart-4)",
+  },
+} satisfies ChartConfig
 
 export function TotalSalesChart() {
+  const totalSales = React.useMemo(() => {
+    return chartData.reduce((acc, curr) => acc + curr.sales, 0)
+  }, [])
+
+  // Calculate the percentage for the largest segment (Direct)
+  const directPercentage = React.useMemo(() => {
+    const directSales = chartData.find(item => item.category === "direct")?.sales || 0
+    return ((directSales / totalSales) * 100).toFixed(1)
+  }, [totalSales])
+
   return (
-    <div className="bg-card rounded-lg p-6">
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-card-foreground">Total Sales</h3>
+    <Card className="bg-card flex flex-col w-full max-w-xs border-none">
+      <CardHeader className="items-center pb-0">
+        <CardTitle className="text-lg font-medium">Total Sales</CardTitle>
+      </CardHeader>
+      <CardContent className="flex-1 pb-4">
+        <ChartContainer
+          config={chartConfig}
+          className="mx-auto aspect-square max-h-[200px]"
+        >
+          <PieChart>
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent hideLabel />}
+            />
+            <Pie
+              data={chartData}
+              dataKey="sales"
+              nameKey="category"
+              innerRadius={50}
+              outerRadius={80}
+              strokeWidth={0}
+              paddingAngle={4}
+              cornerRadius={8}
+            >
+              <Label
+                content={({ viewBox }) => {
+                  if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                    return (
+                      <text
+                        x={viewBox.cx}
+                        y={viewBox.cy}
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                      >
+                        <tspan
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          className="fill-foreground text-2xl font-bold"
+                        >
+                          {directPercentage}%
+                        </tspan>
+                      </text>
+                    )
+                  }
+                }}
+              />
+            </Pie>
+          </PieChart>
+        </ChartContainer>
         
-        <div className="flex items-center justify-between">
-          <div className="relative w-32 h-32">
-            <ResponsiveContainer width="100%" height="100%">
-              <PieChart>
-                <Pie
-                  data={data}
-                  cx="50%"
-                  cy="50%"
-                  innerRadius={25}
-                  outerRadius={50}
-                  paddingAngle={2}
-                  dataKey="value"
-                  startAngle={90}
-                  endAngle={-270}
-                >
-                  {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={entry.color} />
-                  ))}
-                </Pie>
-              </PieChart>
-            </ResponsiveContainer>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="text-center">
-                <div className="text-lg font-bold text-card-foreground">38.6%</div>
+        {/* Custom Legend */}
+        <div className="mt-4 space-y-2">
+          {chartData.map((item) => (
+            <div key={item.category} className="flex items-center justify-between text-sm">
+              <div className="flex items-center gap-2">
+                <div 
+                  className="w-2 h-2 rounded-full" 
+                  style={{ backgroundColor: item.fill }}
+                />
+                <span className="capitalize">{item.category === 'email' ? 'E-mail' : item.category}</span>
               </div>
+              <span className="font-medium">${item.sales.toFixed(2)}</span>
             </div>
-          </div>
-          
-          <div className="flex-1 ml-6">
-            <div className="space-y-3">
-              {salesData.map((item, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <div 
-                      className="w-2 h-2 rounded-full" 
-                      style={{ backgroundColor: item.color }}
-                    ></div>
-                    <span className="text-sm text-muted-foreground">{item.label}</span>
-                  </div>
-                  <span className="text-sm font-medium text-card-foreground">{item.value}</span>
-                </div>
-              ))}
-            </div>
-          </div>
+          ))}
         </div>
-      </div>
-    </div>
-  );
+      </CardContent>
+    </Card>
+  )
 }
