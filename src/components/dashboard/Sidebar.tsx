@@ -31,6 +31,8 @@ interface SidebarProps {
   className?: string;
   collapsed?: boolean;
   onToggle?: () => void;
+  dashboard: string;
+  setDashboard: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const navItems = [
@@ -38,7 +40,7 @@ const navItems = [
     title: "Favorites",
     items: [
       { title: "Overview", icon: Home, active: false },
-      { title: "Projects", icon: FolderOpen, active: false },
+      { title: "Projects", key : 'projects', icon: FolderOpen, active: false },
     ],
   },
   {
@@ -77,7 +79,12 @@ const navItems = [
   },
 ];
 
-export function Sidebar({ className, collapsed = false }: SidebarProps) {
+export function Sidebar({
+  className,
+  collapsed = false,
+  setDashboard,
+  dashboard,
+}: SidebarProps) {
   return (
     <div
       className={cn(
@@ -91,9 +98,7 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
         <div className="flex items-center gap-2">
           <Avatar className="w-8 h-8">
             <AvatarImage
-              src={
-                "https://randomuser.me/api/portraits/men/85.jpg"
-              }
+              src={"https://randomuser.me/api/portraits/men/85.jpg"}
             />
           </Avatar>
           {!collapsed && (
@@ -159,10 +164,13 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
                         size="sm"
                         className={cn(
                           "w-full justify-start text-left font-normal h-8 px-2",
-                          item.active
+                          (item.title === dashboard && item.key !== 'projects')
                             ? "bg-sidebar-accent text-sidebar-accent-foreground"
                             : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
                         )}
+                        onClick={() => {
+                          setDashboard(item.title);
+                        }}
                       >
                         <div className="flex items-center gap-2">
                           <item.icon className="h-4 w-4" />
