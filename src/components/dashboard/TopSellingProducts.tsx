@@ -51,7 +51,7 @@ export function TopSellingProducts() {
           </TableHeader>
           <TableBody>
             {products.map((product, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} className="border-0">
                 <TableCell className="font-medium text-card-foreground">{product.name}</TableCell>
                 <TableCell className="text-card-foreground">{product.price}</TableCell>
                 <TableCell className="text-card-foreground">{product.quantity}</TableCell>

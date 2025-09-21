@@ -92,7 +92,7 @@ export function Sidebar({ className, collapsed = false }: SidebarProps) {
           <Avatar className="w-8 h-8">
             <AvatarImage
               src={
-                "https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg"
+                "https://randomuser.me/api/portraits/men/85.jpg"
               }
             />
           </Avatar>

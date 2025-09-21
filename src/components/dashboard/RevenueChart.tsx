@@ -39,18 +39,18 @@ export function RevenueChart() {
           </h3>
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-foreground"></div>
-              <span className="text-sm text-muted-foreground">
+              <div className="w-1 h-1 rounded-full bg-foreground"></div>
+              <span className="text-xs text-muted-foreground">
                 Current Week
               </span>
-              <span className="text-sm font-medium">$58,211</span>
+              <span className="text-xs font-medium">$58,211</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
-              <span className="text-sm text-muted-foreground">
+              <div className="w-1 h-1 rounded-full bg-skyBlue"></div>
+              <span className="text-xs text-muted-foreground">
                 Previous Week
               </span>
-              <span className="text-sm font-medium">$68,768</span>
+              <span className="text-xs font-medium">$68,768</span>
             </div>
           </div>
         </div>
