@@ -160,7 +160,7 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({
               <TableCell className="text-muted-foreground">
                 {project.date}
               </TableCell>
-              <TableCell>
+              <TableCell className="whitespace-nowrap">
                 <div className="flex items-center gap-2">
                   <div className={`w-2 h-2 rounded-full ${getStatusDotColor(project.status)}`}></div>
                   <span className={`text-sm ${getStatusColor(project.status)}`}>
