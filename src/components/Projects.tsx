@@ -297,7 +297,7 @@ const Projects = () => {
       <div className="p-6">
         {/* Page Title */}
         <div className="mb-6">
-          <h2 className="text-sm font-medium text-foreground">Projects</h2>
+          <h2 className="text-sm font-medium text-foreground">Order List</h2>
         </div>
 
         {/* Search Box */}
