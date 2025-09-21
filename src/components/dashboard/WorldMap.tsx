@@ -44,7 +44,7 @@ export default function RevenueWorldMap() {
   const maxValue = Math.max(...locations.map((loc) => loc.revenue));
 
   return (
-    <Card className="w-full max-w-lg bg-card border-none">
+    <Card className="w-full max-w-lg bg-card border-none h-full">
       <CardHeader className="pb-4">
         <CardTitle className="text-lg font-semibold text-card-foreground">
           Revenue by Location
