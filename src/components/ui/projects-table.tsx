@@ -29,7 +29,7 @@ interface ProjectsTableProps {
 
 const ProjectsTable: React.FC<ProjectsTableProps> = ({ 
   projects, 
-  itemsPerPage = 5 
+  itemsPerPage = 10 
 }) => {
   const [selectedRows, setSelectedRows] = useState<Set<string>>(new Set());
   const [selectAll, setSelectAll] = useState(false);
@@ -69,35 +69,37 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({
     setSelectAll(false);
   };
 
-  const getStatusVariant = (status: string) => {
-    switch (status) {
-      case "Complete":
-      case "Approved":
-        return "default";
-      case "In Progress":
-        return "secondary";
-      case "Pending":
-        return "outline";
-      case "Rejected":
-        return "destructive";
-      default:
-        return "outline";
-    }
-  };
-
   const getStatusColor = (status: string) => {
     switch (status) {
       case "Complete":
+        return "text-[#4AA785]";
       case "Approved":
-        return "bg-green-100 text-green-800 border-green-200";
+        return "text-[#FFC555]";
       case "In Progress":
-        return "bg-blue-100 text-blue-800 border-blue-200";
+        return "text-[#8A8CD9]";
       case "Pending":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "text-[#59A8D4]";
       case "Rejected":
-        return "bg-red-100 text-red-800 border-red-200";
+        return "text-[rgba(28,28,28,0.40)]";
       default:
-        return "bg-gray-100 text-gray-800 border-gray-200";
+        return "text-gray-600";
+    }
+  };
+
+  const getStatusDotColor = (status: string) => {
+    switch (status) {
+      case "Complete":
+        return "bg-[#4AA785]";
+      case "Approved":
+        return "bg-[#FFC555]";
+      case "In Progress":
+        return "bg-[#8A8CD9]";
+      case "Pending":
+        return "bg-[#59A8D4]";
+      case "Rejected":
+        return "bg-[rgba(28,28,28,0.40)]";
+      default:
+        return "bg-gray-500";
     }
   };
 
@@ -158,12 +160,12 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({
                 {project.date}
               </TableCell>
               <TableCell>
-                <Badge
-                  variant={getStatusVariant(project.status)}
-                  className={`${getStatusColor(project.status)} border`}
-                >
-                  {project.status}
-                </Badge>
+                <div className="flex items-center gap-2">
+                  <div className={`w-2 h-2 rounded-full ${getStatusDotColor(project.status)}`}></div>
+                  <span className={`text-sm font-medium ${getStatusColor(project.status)}`}>
+                    {project.status}
+                  </span>
+                </div>
               </TableCell>
             </TableRow>
           ))}
