@@ -8,6 +8,7 @@ interface MetricCardProps {
   change: string;
   positive?: boolean;
   className?: string;
+  index?: number;
 }
 
 export function MetricCard({
@@ -16,17 +17,33 @@ export function MetricCard({
   change,
   positive = true,
   className,
+  index,
 }: MetricCardProps) {
+  let bgApplied = 'bg-card'
+  let titleApplied = 'text-muted-foreground'
+  let valueApplied = 'text-card-foreground'
+  if(index === 0){
+    bgApplied = 'bg-metricCard1'
+    titleApplied = 'text-[hsla(0_0%_11%_0.4)]'
+    valueApplied = 'text-[hsl(222.2_84%_4.9%)]'
+  } else if(index === 3){
+    bgApplied = 'bg-metricCard4'
+     titleApplied = 'text-[hsla(0_0%_11%_0.4)]'
+     valueApplied = 'text-[hsl(222.2_84%_4.9%)]'
+  }
+
+console.log('bgApplied ', bgApplied)
+
   return (
-    <div className={cn("bg-card rounded-lg p-6 min-w-[170px]", className)}>
+    <div className={cn(`${bgApplied} rounded-lg p-6 min-w-[170px]`, className)}>
       <div className="space-y-2">
-        <p className="text-sm font-medium text-muted-foreground">{title}</p>
+        <p className={cn("text-sm font-medium", valueApplied)}>{title}</p>
         <div className="flex items-center justify-between">
-          <h3 className="text-2xl font-bold text-card-foreground">{value}</h3>
+          <h3 className={cn("text-2xl font-bold", valueApplied)}>{value}</h3>
           <div
             className={cn(
               "flex items-center gap-1 text-sm",
-              positive ? "text-card-foreground" : "text-card-foreground"
+              positive ? valueApplied : valueApplied
             )}
           >
             <span>{change}</span>

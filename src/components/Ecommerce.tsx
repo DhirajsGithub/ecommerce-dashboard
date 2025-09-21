@@ -25,24 +25,28 @@ const Ecommerce = () => {
               value="3,781"
               change="+11.01%"
               positive={true}
+              index={0}
             />
             <MetricCard
               title="Orders"
               value="1,219"
               change="-0.03%"
               positive={false}
+              index={1}
             />
             <MetricCard
               title="Revenue"
               value="$695"
               change="+15.03%"
               positive={true}
+              index={2}
             />
             <MetricCard
               title="Growth"
               value="30.1%"
               change="+6.08%"
               positive={true}
+              index={3}
             />
           </div>
 

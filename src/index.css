@@ -65,6 +65,9 @@ All colors MUST be HSL.
     --pie-chart-2 : #B1E3FF;
     --pie-chart-3 : #BAEDBD;
     --pie-chart-4 : #1C1C1C;
+
+    --metric-card-1: #E3F5FF;
+    --metric-card-4: #E5ECF6;
   }
 
   .dark {
@@ -113,6 +116,9 @@ All colors MUST be HSL.
     --pie-chart-2 : #B1E3FF;
     --pie-chart-3 : #BAEDBD;
     --pie-chart-4 : #C6C7F8;
+
+    --metric-card-1: #E3F5FF;
+    --metric-card-4: #E5ECF6;
   }
 }
 

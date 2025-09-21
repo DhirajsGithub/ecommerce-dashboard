@@ -57,6 +57,12 @@ export default {
         paleBlue: {
           DEFAULT: "hsl(var(--ice-blue))",
         },
+        metricCard1: {
+          DEFAULT: "var(--metric-card-1)",
+        },
+        metricCard4: {
+          DEFAULT: "var(--metric-card-4)",
+        },
         sidebar: {
           DEFAULT: "hsl(var(--background))",
           foreground: "hsl(var(--sidebar-foreground))",
