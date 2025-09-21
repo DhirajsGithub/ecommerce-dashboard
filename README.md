@@ -2,7 +2,7 @@
 
 A modern, responsive dashboard application built with React, TypeScript, and Tailwind CSS. This project showcases a comprehensive admin dashboard with multiple views including eCommerce analytics and project management.
 
-![Dashboard Preview](src/assets/dashboard-light.png)
+![Dashboard Preview](/public/demo-gif.gif)
 
 ## ✨ Features
 
