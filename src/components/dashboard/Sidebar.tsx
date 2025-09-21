@@ -98,7 +98,7 @@ export function Sidebar({
         <div className="flex items-center gap-2">
           <Avatar className="w-8 h-8">
             <AvatarImage
-              src={"https://randomuser.me/api/portraits/men/85.jpg"}
+              src={"https://avatarfiles.alphacoders.com/586/58682.jpg"}
             />
           </Avatar>
           {!collapsed && (
