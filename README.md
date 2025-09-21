@@ -2,6 +2,8 @@
 
 A modern, responsive dashboard application built with React, TypeScript, and Tailwind CSS. This project showcases a comprehensive admin dashboard with multiple views including eCommerce analytics and project management.
 
+[Click to view live E-commerce Dashboard](https://ecommerce-dashboard-three-murex.vercel.app/)
+
 ![Dashboard Preview](/public/demo-gif.gif)
 
 ## ✨ Features
@@ -69,8 +71,8 @@ A modern, responsive dashboard application built with React, TypeScript, and Tai
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/sharp-dash-craft.git
-   cd sharp-dash-craft
+   git clone https://github.com/DhirajsGithub/ecommerce-dashboard
+   cd ecommerce-dashboard
    ```
 
 2. **Install dependencies**
