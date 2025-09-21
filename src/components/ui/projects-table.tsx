@@ -105,22 +105,23 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({
 
   return (
     <div className="rounded-lg overflow-hidden">
-      <Table>
+      <div className="overflow-x-auto">
+        <Table>
         <TableHeader>
           <TableRow>
-            <TableHead className="w-12">
+            <TableHead className="w-12 min-w-[48px]">
               <Checkbox
                 checked={selectAll}
                 onCheckedChange={handleSelectAll}
                 aria-label="Select all projects"
               />
             </TableHead>
-            <TableHead>Order ID</TableHead>
-            <TableHead>User</TableHead>
-            <TableHead>Project</TableHead>
-            <TableHead>Address</TableHead>
-            <TableHead>Date</TableHead>
-            <TableHead>Status</TableHead>
+            <TableHead className="min-w-[100px]">Order ID</TableHead>
+            <TableHead className="min-w-[200px]">User</TableHead>
+            <TableHead className="min-w-[150px]">Project</TableHead>
+            <TableHead className="min-w-[180px]">Address</TableHead>
+            <TableHead className="min-w-[120px]">Date</TableHead>
+            <TableHead className="min-w-[140px]">Status</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -170,7 +171,8 @@ const ProjectsTable: React.FC<ProjectsTableProps> = ({
             </TableRow>
           ))}
         </TableBody>
-      </Table>
+        </Table>
+      </div>
       
       {/* Pagination */}
       <Pagination
