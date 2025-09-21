@@ -30,6 +30,7 @@ const Index = () => {
         <Header
           onToggleSidebar={toggleSidebar}
           onToggleNotifications={toggleNotifications}
+          dashboard={dashboard}
         />
         {/* Dashboard Content */}
         {dashboard === "Projects" ? <Projects /> : <Ecommerce />}

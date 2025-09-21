@@ -17,11 +17,13 @@ import { useTheme } from "next-themes";
 interface HeaderProps {
   onToggleSidebar?: () => void;
   onToggleNotifications?: () => void;
+  dashboard?: string;
 }
 
 export function Header({
   onToggleSidebar,
   onToggleNotifications,
+  dashboard,
 }: HeaderProps) {
   const { theme, setTheme } = useTheme();
 
@@ -39,7 +41,7 @@ export function Header({
         <div className="flex items-center gap-2 text-sm text-muted-foreground">
           <span>Dashboards</span>
           <span>/</span>
-          <span className="text-foreground">Default</span>
+          <span className="text-foreground">{dashboard}</span>
         </div>
       </div>
 
